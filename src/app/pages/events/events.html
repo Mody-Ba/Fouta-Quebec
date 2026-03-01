@@ -1,0 +1,19 @@
+<section class="events-page">
+
+  <div class="events-hero">
+    <h1>Nos Événements</h1>
+    <p>Découvrez les activités culturelles et communautaires de FOUTA-QUÉBEC</p>
+  </div>
+
+  <div class="event-list">
+    @for (event of events; track event) {
+      <div class="event-item">
+        <h3>{{ event.title }}</h3>
+        <p class="date">📅 {{ event.date }}</p>
+        <p class="location">📍 {{ event.location }}</p>
+        <button>Voir détails</button>
+      </div>
+    }
+  </div>
+
+</section>
