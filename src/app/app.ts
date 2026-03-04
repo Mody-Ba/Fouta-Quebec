@@ -1,10 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NavBarComponent} from './shared/navbar/navbar';
+
+import {Header} from './layout/header/header';
+import {Footer} from './layout/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent],
+  imports: [RouterOutlet,  Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

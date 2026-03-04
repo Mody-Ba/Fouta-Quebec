@@ -1,6 +1,6 @@
-export interface Event {
+export interface News {
   id: number;
   title: string;
   date: string;
-  location: string;
+  content: string;
 }

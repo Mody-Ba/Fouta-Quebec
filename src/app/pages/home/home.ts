@@ -1,10 +1,11 @@
 import { Component ,OnInit } from '@angular/core';
 import { EventService } from '../../core/services/event.service';
 import { Event } from '../../models/Events.model';
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -1,0 +1,28 @@
+.news {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.news-grid {
+  display: flex;
+  justify-content: center;   /* centre les cartes */
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.news-card {
+  width: 320px;
+  padding: 20px;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-8px);
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}

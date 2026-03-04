@@ -1,0 +1,27 @@
+@if (news) {
+  <div class="detail-container">
+
+    <h1>{{ news.title }}</h1>
+
+    <p class="date">{{ news.date }}</p>
+
+    <p>{{ news.content }}</p>
+
+    <button mat-raised-button color="primary" routerLink="/news">
+      ← Retour aux actualités
+    </button>
+
+  </div>
+} @else {
+
+  <div class="error">
+
+    <h2>Actualité introuvable</h2>
+
+    <button mat-raised-button color="primary" routerLink="/news">
+      Retour
+    </button>
+
+  </div>
+
+}

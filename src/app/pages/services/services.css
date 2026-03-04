@@ -1,0 +1,38 @@
+.services {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+mat-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+.service-card {
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.service-card img {
+  height: 200px;
+  object-fit: cover;
+}

@@ -1,0 +1,41 @@
+<section class="news">
+
+  <div class="container">
+
+    <h1 class="title">Actualités</h1>
+
+    <p class="subtitle">
+      Découvrez les dernières nouvelles et activités de FOUTA-QUÉBEC.
+    </p>
+
+    <div class="news-grid">
+
+      @for (item of newsList; track item.id) {
+
+        <mat-card class="news-card">
+
+          <mat-card-header>
+            <mat-card-title>{{ item.title }}</mat-card-title>
+            <mat-card-subtitle>{{ item.date }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{ item.content }}</p>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary"
+                    [routerLink]="['/news', item.id]">
+              Lire plus
+            </button>
+          </mat-card-actions>
+
+        </mat-card>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>

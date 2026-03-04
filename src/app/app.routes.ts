@@ -6,7 +6,9 @@ import { EventsComponent } from './pages/events/events';
 import { ContactComponent } from './pages/contact/contact';
 import { LoginComponent } from './auth/login/login';
 import { DashboardComponent } from './admin/dashboard/dashboard';
-import { NavBarComponent } from './shared/navbar/navbar';
+import {EventDetailComponent} from './pages/event-detail/event-detail';
+import {NewsComponent} from './pages/news/news';
+import {GalleryComponent} from './pages/gallery/gallery';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,5 +18,19 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: DashboardComponent },
-  { path: 'shared', component: NavBarComponent },
+  { path: 'news', component:NewsComponent },
+  { path: 'gallery', component:GalleryComponent },
+
+  {
+    path: 'events/:id',
+    loadComponent: () =>
+      import('./pages/event-detail/event-detail')
+        .then(m => m.EventDetailComponent)
+  },
+  {
+    path: 'news/:id',
+    loadComponent: () =>
+      import('./pages/news-detail/news-detail')
+        .then(m => m.NewsDetailComponent)
+  }
 ];

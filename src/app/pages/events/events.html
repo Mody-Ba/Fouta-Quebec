@@ -1,19 +1,50 @@
-<section class="events-page">
+<section class="events">
 
-  <div class="events-hero">
-    <h1>Nos Événements</h1>
-    <p>Découvrez les activités culturelles et communautaires de FOUTA-QUÉBEC</p>
-  </div>
+  <div class="container">
 
-  <div class="event-list">
-    @for (event of events; track event) {
-      <div class="event-item">
-        <h3>{{ event.title }}</h3>
-        <p class="date">📅 {{ event.date }}</p>
-        <p class="location">📍 {{ event.location }}</p>
-        <button>Voir détails</button>
-      </div>
-    }
+    <h1 class="title">Nos Événements</h1>
+
+    <p class="subtitle">
+      Découvrez les activités culturelles et communautaires de FOUTA-QUÉBEC
+    </p>
+
+    <div class="events-grid">
+
+      @for (event of events; track event.id) {
+
+        <mat-card class="event-card">
+
+          <mat-card-header>
+            <mat-card-title>{{ event.title }}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+
+            <p>
+              📅 {{ event.date }}
+            </p>
+
+            <p>
+              📍 {{ event.location }}
+            </p>
+
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+
+            <button mat-raised-button color="primary"
+                    [routerLink]="['/events', event.id]">
+              Voir détails
+            </button>
+
+          </mat-card-actions>
+
+        </mat-card>
+
+      }
+
+    </div>
+
   </div>
 
 </section>
