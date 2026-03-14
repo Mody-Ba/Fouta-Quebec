@@ -1,11 +1,11 @@
-.login-container{
+.register-container{
   display:flex;
   justify-content:center;
   align-items:center;
   height:80vh;
 }
 
-.login-card{
+.register-card{
   width:420px;
   padding:30px;
 }
@@ -14,7 +14,7 @@
   width:100%;
 }
 
-.register{
+.login-link{
   text-align:center;
   margin-top:10px;
 }

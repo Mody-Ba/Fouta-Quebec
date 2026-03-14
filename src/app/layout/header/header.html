@@ -1,21 +1,36 @@
 <mat-sidenav-container>
 
   <mat-sidenav #drawer [(opened)]="opened" mode="over">
-    <a mat-button routerLink="/" (click)="drawer.close()">Accueil</a>
-    <a mat-button routerLink="/about" (click)="drawer.close()">À propos</a>
-    <a mat-button routerLink="/services" (click)="drawer.close()">Services</a>
-    <a mat-button routerLink="/events" (click)="drawer.close()">Événements</a>
-    <a mat-button routerLink="/news" (click)="drawer.close()">Actualités</a>
-    <a mat-button routerLink="/gallery" (click)="drawer.close()">Galerie</a>
-    <a mat-button routerLink="/contact" (click)="drawer.close()">Contact</a>
+
+    <a mat-button routerLink="/" fragment="accueil" (click)="drawer.close()">Accueil</a>
+
+    <a mat-button routerLink="/" fragment="apropos" (click)="drawer.close()">À propos</a>
+
+    <a mat-button routerLink="/" fragment="services" (click)="drawer.close()">Services</a>
+
+    <a mat-button routerLink="/" fragment="evenements" (click)="drawer.close()">Événements</a>
+
+    <a mat-button routerLink="/" fragment="actualites" (click)="drawer.close()">Actualités</a>
+
+    <a mat-button routerLink="/" fragment="galerie" (click)="drawer.close()">Galerie</a>
+
+    <a mat-button routerLink="/" fragment="contact" (click)="drawer.close()">Contact</a>
+
+    <button mat-raised-button color="primary" routerLink="/member">
+      Devenir membre
+    </button>
+
   </mat-sidenav>
 
+
   <mat-toolbar color="primary">
+
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
     <span style="margin-left:10px;">FOUTA-QUÉBEC</span>
+
   </mat-toolbar>
 
 </mat-sidenav-container>

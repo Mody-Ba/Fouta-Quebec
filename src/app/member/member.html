@@ -1,0 +1,121 @@
+<section class="member-section">
+
+  <h1>Devenir membre</h1>
+
+  <mat-card class="member-card">
+
+    <form>
+
+      <!-- Nom -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Nom" [(ngModel)]="nom" name="nom">
+      </mat-form-field>
+
+      <!-- Prénom -->
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput placeholder="Prénom" [(ngModel)]="prenom" name="prenom">
+      </mat-form-field>
+
+      <!-- Adresse -->
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input matInput placeholder="Adresse" [(ngModel)]="adresse" name="adresse">
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Email" [(ngModel)]="email" name="email">
+      </mat-form-field>
+
+      <!-- Téléphone -->
+      <mat-form-field appearance="outline">
+        <mat-label>Téléphone</mat-label>
+        <input matInput placeholder="Téléphone" [(ngModel)]="telephone" name="telephone">
+      </mat-form-field>
+
+      <!-- Photo -->
+      <div class="photo-section">
+
+        <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+          Choisir une photo
+        </button>
+
+        <input
+          #fileInput
+          type="file"
+          accept="image/*"
+          hidden
+          (change)="onFileSelected($event)"
+        >
+
+      </div>
+      <h3>Paiement - Cotisation 10$</h3>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Numéro de carte</mat-label>
+        <input matInput placeholder="1234 5678 9012 3456" [(ngModel)]="cardNumber" name="cardNumber">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nom sur la carte</mat-label>
+        <input matInput [(ngModel)]="cardName" name="cardName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date expiration</mat-label>
+        <input matInput placeholder="MM/AA" [(ngModel)]="cardDate" name="cardDate">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CVV</mat-label>
+        <input matInput type="password" [(ngModel)]="cardCvv" name="cardCvv">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="button" (click)="payerCarte()">
+        Payer 10$
+      </button>
+
+
+      <!-- Bouton devenir membre -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="devenirMembre()">
+
+        Devenir membre
+
+      </button>
+
+    </form>
+
+  </mat-card>
+
+
+  <!-- Badge membre -->
+  @if(showBadge){
+
+    <mat-card id="badge" class="badge-card print-area">
+
+      <h2>Carte membre FOUTA-QUÉBEC</h2>
+
+      <img [src]="photoPreview" class="badge-photo">
+
+      <p><strong>Nom :</strong> {{nom}}</p>
+      <p><strong>Prénom :</strong> {{prenom}}</p>
+      <p><strong>Adresse :</strong> {{adresse}}</p>
+      <p><strong>Téléphone :</strong> {{telephone}}</p>
+      <p><strong>ID membre :</strong> {{memberId}}</p>
+
+      <button class="print-btn" mat-raised-button color="primary" (click)="printBadge()">
+        Imprimer badge
+      </button>
+
+    </mat-card>
+
+  }
+
+</section>

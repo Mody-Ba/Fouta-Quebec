@@ -1,19 +1,336 @@
-<section class="hero">
+<!-- ACCUEIL -->
+<section id="accueil" class="hero">
 
   <div class="hero-overlay">
-
     <h1>Bienvenue à FOUTA-QUÉBEC</h1>
+    <p>Une association engagée pour accompagner la communauté.</p>
 
-    <p>
-      Une association engagée pour accompagner et soutenir la communauté.
-    </p>
-
-    <button
-      mat-raised-button
-      color="primary"
-      routerLink="/services">
+    <button mat-raised-button color="primary" routerLink="/" fragment="services">
       Découvrir nos services
     </button>
+  </div>
+
+</section>
+
+
+<!-- A PROPOS -->
+<section id="apropos" class="about">
+
+  <div class="container">
+
+    <h1 class="title">À propos de FOUTA-QUÉBEC</h1>
+
+    <p class="subtitle">
+      FOUTA-QUÉBEC est une association dédiée à soutenir et accompagner
+      la communauté dans son intégration sociale, académique et professionnelle.
+    </p>
+
+    <div class="about-grid">
+
+      <!-- TEXTE -->
+      <div class="about-content">
+
+        <mat-card>
+          <mat-card-title>Notre mission</mat-card-title>
+          <mat-card-content>
+            Soutenir les membres de la communauté en offrant des services
+            d’accompagnement et d’intégration au Québec.
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+          <mat-card-title>Notre vision</mat-card-title>
+          <mat-card-content>
+            Construire une communauté forte, solidaire et engagée.
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+          <mat-card-title>Nos valeurs</mat-card-title>
+          <mat-card-content>
+            Solidarité, entraide, respect et engagement communautaire.
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+      <!-- IMAGE -->
+      <div class="about-image">
+        <img src="/images/fouta-toro.jpg" alt="Communauté Fouta Québec">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section id="services" class="services" >
+
+  <h1 class="page-title">Nos Services</h1>
+  <p class="page-subtitle">
+    Découvrez comment nous accompagnons la communauté.
+  </p>
+
+  <div class="cards">
+
+    <!-- Service 1 -->
+    <mat-card class="service-card">
+
+      <img mat-card-image src="images/nouvel-arrivant.jpg" alt="Nouveaux arrivants">
+
+      <mat-card-title>Aide aux nouveaux arrivants</mat-card-title>
+
+      <mat-card-content>
+        Accompagnement administratif et orientation au Québec.
+      </mat-card-content>
+
+      <div class="actions">
+        <button mat-raised-button color="primary">
+          En savoir plus
+        </button>
+      </div>
+
+    </mat-card>
+
+    <!-- Service 2 -->
+    <mat-card class="service-card">
+
+      <img mat-card-image src="images/oip.jpg" alt="Orientation académique">
+
+
+      <mat-card-title>Orientation académique</mat-card-title>
+
+      <mat-card-content>
+        Support pour les étudiants et conseils d’intégration scolaire.
+      </mat-card-content>
+
+      <div class="actions">
+        <button mat-raised-button color="primary">
+          En savoir plus
+        </button>
+      </div>
+
+    </mat-card>
+
+    <!-- Service 3 -->
+    <mat-card class="service-card">
+
+      <img mat-card-image src="images/emplo.jpg" alt="Soutien emploi">
+
+      <mat-card-title>Soutien emploi</mat-card-title>
+
+      <mat-card-content>
+        Aide à la recherche d’emploi et développement professionnel.
+      </mat-card-content>
+
+      <div class="actions">
+        <button mat-raised-button color="primary">
+          En savoir plus
+        </button>
+      </div>
+
+    </mat-card>
+
+  </div>
+
+</section>
+
+
+
+<!-- EVENEMENTS -->
+<section id="evenements" class="events">
+
+  <div class="container">
+
+    <h1 class="title">Nos Événements</h1>
+
+    <p class="subtitle">
+      Découvrez les activités culturelles et communautaires de FOUTA-QUÉBEC
+    </p>
+
+    <div class="events-grid">
+
+      @for (event of events; track event.id) {
+
+        <mat-card class="event-card">
+
+          <mat-card-header>
+            <mat-card-title>{{ event.title }}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+
+            <p>
+              📅 {{ event.date }}
+            </p>
+
+            <p>
+              📍 {{ event.location }}
+            </p>
+
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+
+            <button mat-raised-button color="primary"
+                    [routerLink]="['/events', event.id]">
+              Voir détails
+            </button>
+
+          </mat-card-actions>
+
+        </mat-card>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ACTUALITES -->
+<section id="actualites" class="news">
+
+  <div class="container">
+
+    <h1 class="title">Actualités</h1>
+
+    <p class="subtitle">
+      Découvrez les dernières nouvelles et activités de FOUTA-QUÉBEC.
+    </p>
+
+    <div class="news-grid">
+
+      @for (item of newsList; track item.id) {
+
+        <mat-card class="news-card">
+
+          <mat-card-header>
+            <mat-card-title>{{ item.title }}</mat-card-title>
+            <mat-card-subtitle>{{ item.date }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{ item.content }}</p>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary"
+                    [routerLink]="['/news', item.id]">
+              Lire plus
+            </button>
+          </mat-card-actions>
+
+        </mat-card>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GALERIE -->
+<section id="galerie" class="gallery">
+  <h2>Galerie</h2>
+  <p>Photos de nos événements et activités.</p>
+
+  <div class="gallery-grid">
+    <img src="/images/gal1.jpeg" (click)="openImage('/images/gal1.jpeg')">
+    <img src="/images/gal2.jpeg" (click)="openImage('/images/gal2.jpeg')">
+    <img src="/images/gal3.jpeg" (click)="openImage('/images/gal3.jpeg')">
+    <img src="/images/gal4.jpeg" (click)="openImage('/images/gal4.jpeg')">
+
+    <img src="/images/gal5.jpeg" (click)="openImage('/images/gal5.jpeg')">
+    <img src="/images/gal6.jpeg" (click)="openImage('/images/gal6.jpeg')">
+    <img src="/images/gal7.jpeg" (click)="openImage('/images/gal7.jpeg')">
+    <img src="/images/gal8.jpeg" (click)="openImage('/images/gal8.jpeg')">
+
+    <img src="/images/gal9.jpeg" (click)="openImage('/images/gal9.jpeg')">
+    <img src="/images/gal10.jpeg" (click)="openImage('/images/gal10.jpeg')">
+    <img src="/images/gal11.jpeg" (click)="openImage('/images/gal11.jpeg')">
+    <img src="/images/gal12.jpeg" (click)="openImage('/images/gal12.jpeg')">
+  </div>
+
+  @if (selectedImage) {
+    <div class="lightbox" (click)="closeImage()">
+      <img [src]="selectedImage" alt="Image agrandie" (click)="$event.stopPropagation()">
+    </div>
+  }
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+
+  <div class="contact-container">
+
+    <!-- formulaire -->
+    <div class="contact-form">
+
+      <p>I am a/n</p>
+
+      <label>
+        <input type="radio" name="type"> Adult
+      </label>
+
+      <label>
+        <input type="radio" name="type"> Student
+      </label>
+
+      <input type="email" placeholder="email address">
+
+      <button class="signup-btn">
+        SIGN UP NOW
+      </button>
+
+    </div>
+
+
+    <!-- réseaux sociaux -->
+    <div class="contact-right">
+
+      <div class="social-icons">
+
+        <mat-icon>camera_alt</mat-icon>
+        <mat-icon>smart_display</mat-icon>
+        <mat-icon>facebook</mat-icon>
+        <mat-icon>alternate_email</mat-icon>
+        <mat-icon>business</mat-icon>
+
+      </div>
+
+      <div class="links">
+
+        <a>CONTACT</a>
+        <a>FAQ</a>
+        <a>NEWS</a>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a>Careers</a>
+        <a>Sign In</a>
+        <a>Privacy Policy</a>
+        <a>Terms of Use</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 FOUTA-QUÉBEC - Tous droits réservés
   </div>
 
 </section>

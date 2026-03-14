@@ -1,0 +1,82 @@
+.member-section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+/* carte formulaire */
+.member-card{
+  max-width:500px;
+  margin:auto;
+  padding:30px;
+}
+
+/* formulaire */
+form{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* bouton photo */
+.photo-section{
+  display:flex;
+  justify-content:center;
+  margin-top:10px;
+}
+
+/* BADGE */
+.badge-card{
+  width:350px;
+  margin:40px auto;
+  padding:25px;
+  text-align:center;
+  border-radius:10px;
+}
+
+/* photo badge */
+.badge-photo{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:15px 0;
+}
+
+/* texte badge */
+.badge-card p{
+  margin:8px 0;
+  font-size:16px;
+}
+
+
+/* impression */
+
+@media print {
+
+  body *{
+    visibility:hidden;
+  }
+
+  #badge,
+  #badge *{
+    visibility:visible;
+  }
+
+  #badge{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:350px;
+    margin:0;
+    padding:25px;
+    box-shadow:none;
+    border:none;
+    text-align:center;
+  }
+
+  .print-btn{
+    display:none;
+  }
+
+}
