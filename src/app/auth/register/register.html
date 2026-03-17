@@ -1,23 +1,26 @@
 <div class="register-container">
-
   <mat-card class="register-card">
 
     <h2>Créer un compte</h2>
 
     <mat-form-field appearance="outline" class="full">
-      <input matInput placeholder="Nom" [(ngModel)]="nom">
+      <mat-label>Nom</mat-label>
+      <input matInput [(ngModel)]="nom" name="nom">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full">
-      <input matInput placeholder="Prénom" [(ngModel)]="prenom">
+      <mat-label>Prénom</mat-label>
+      <input matInput [(ngModel)]="prenom" name="prenom">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full">
-      <input matInput placeholder="Email" [(ngModel)]="email">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" name="email">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full">
-      <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="password">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password">
     </mat-form-field>
 
     <button mat-raised-button color="primary" class="full" (click)="register()">
@@ -30,5 +33,4 @@
     </p>
 
   </mat-card>
-
 </div>

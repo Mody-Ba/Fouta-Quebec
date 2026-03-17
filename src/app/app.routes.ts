@@ -12,6 +12,7 @@ import {NewsComponent} from './pages/news/news';
 import {GalleryComponent} from './pages/gallery/gallery';
 import {MemberComponent} from './member/member';
 import {RegisterComponent} from './auth/register/register';
+import {ProfilComponent} from './auth/profil/profil';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +27,7 @@ export const routes: Routes = [
 
   { path: 'member', component: MemberComponent },
   { path:'register', component:RegisterComponent },
-
+  { path: 'profil', component: ProfilComponent },
 
   {
     path: 'events/:id',

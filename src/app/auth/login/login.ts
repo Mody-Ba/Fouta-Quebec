@@ -1,21 +1,24 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 import { AuthService } from '../../core/services/auth.service';
-import {Router, RouterModule} from '@angular/router';
-import {FormsModule} from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [
     FormsModule,
+    RouterModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    RouterModule
+    MatButtonModule
   ],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
@@ -26,26 +29,21 @@ export class LoginComponent {
   password = '';
 
   constructor(
-    private authService:AuthService,
-    private router:Router
-  ){}
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  login(){
+  login(): void {
+    const success = this.authService.login(this.email, this.password);
 
-    const ok = this.authService.login(this.email,this.password);
-
-    if(ok){
-
-      alert("Connexion réussie");
-
-      this.router.navigate(['/member']);
-
-    }else{
-
-      alert("Email ou mot de passe incorrect");
-
+    if (success) {
+      if (this.authService.isAdmin()) {
+        this.router.navigate(['/profil']);
+      } else {
+        this.router.navigate(['/profil']);
+      }
+    } else {
+      alert('Email ou mot de passe incorrect');
     }
-
   }
-
 }

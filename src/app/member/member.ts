@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { AuthService } from '../core/services/auth.service';
 
@@ -19,108 +19,90 @@ import { AuthService } from '../core/services/auth.service';
     FormsModule
   ],
   templateUrl: './member.html',
-  styleUrl: './member.css',
+  styleUrls: ['./member.css'],
 })
 export class MemberComponent implements OnInit {
 
-  nom: string = '';
-  prenom: string = '';
-  adresse: string = '';
-  email: string = '';
-  telephone: string = '';
+  nom = '';
+  prenom = '';
+  adresse = '';
+  email = '';
+  telephone = '';
 
-  cardNumber: string = '';
-  cardName: string = '';
-  cardDate: string = '';
-  cardCvv: string = '';
+  cardNumber = '';
+  cardName = '';
+  cardDate = '';
+  cardCvv = '';
 
-  memberId: string = '';
-  photoPreview: any;
+  memberId = '';
+  photoPreview: string | ArrayBuffer | null = null;
 
-  showBadge: boolean = false;
-  paid: boolean = false;
+  showBadge = false;
+  paid = false;
 
-  constructor(private authService: AuthService ,private router:Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit(){
-
-    if(!this.authService.isLogged()){
-
-      alert("Vous devez vous connecter pour accéder à cette page");
-
+  ngOnInit(): void {
+    if (!this.authService.isLogged()) {
+      alert('Vous devez vous connecter pour accéder à cette page');
       this.router.navigate(['/login']);
-
+      return;
     }
 
+    if (this.authService.isMember()) {
+      alert('Vous êtes déjà membre');
+      this.router.navigate(['/profil']);
+      return;
+    }
+
+    const currentUser = this.authService.getCurrentUser();
+
+    if (currentUser) {
+      this.nom = currentUser.nom;
+      this.prenom = currentUser.prenom;
+      this.email = currentUser.email;
+    }
   }
 
-  onFileSelected(event:any){
-
+  onFileSelected(event: any): void {
     const file = event.target.files[0];
 
-    if(file){
-
+    if (file) {
       const reader = new FileReader();
 
       reader.onload = () => {
         this.photoPreview = reader.result;
-      }
+      };
 
       reader.readAsDataURL(file);
-
     }
-
   }
 
-  payerCarte(){
-
-    if(
-      this.cardNumber.trim() === '' ||
-      this.cardName.trim() === '' ||
-      this.cardDate.trim() === '' ||
-      this.cardCvv.trim() === ''
-    ){
-
-      alert("Veuillez remplir les informations de carte");
-
+  payerCarte(): void {
+    if (!this.cardNumber || !this.cardName || !this.cardDate || !this.cardCvv) {
       return;
-
     }
 
-    alert("Paiement de 10$ accepté");
-
+    alert('Paiement de 10$ accepté');
     this.paid = true;
-
   }
 
-  devenirMembre(){
-
-    if(!this.paid){
-
-      alert("Vous devez payer 10$ pour devenir membre");
-
+  devenirMembre(): void {
+    if (!this.nom || !this.prenom || !this.adresse || !this.email || !this.telephone || !this.paid) {
       return;
-
     }
 
-    this.memberId = Math.floor(Math.random()*10000).toString();
-
+    this.memberId = Math.floor(Math.random() * 10000).toString();
     this.showBadge = true;
+    this.authService.becomeMember();
 
+    alert('Félicitations, vous êtes maintenant membre');
   }
 
-  printBadge(){
-
-    if(!this.paid){
-
-      alert("Vous devez payer 10$ avant d'imprimer le badge");
-
-      return;
-
-    }
-
+  printBadge(): void {
     window.print();
-
   }
-
 }

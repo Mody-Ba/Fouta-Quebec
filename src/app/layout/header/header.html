@@ -3,22 +3,38 @@
   <mat-sidenav #drawer [(opened)]="opened" mode="over">
 
     <a mat-button routerLink="/" fragment="accueil" (click)="drawer.close()">Accueil</a>
-
     <a mat-button routerLink="/" fragment="apropos" (click)="drawer.close()">À propos</a>
-
     <a mat-button routerLink="/" fragment="services" (click)="drawer.close()">Services</a>
-
     <a mat-button routerLink="/" fragment="evenements" (click)="drawer.close()">Événements</a>
-
     <a mat-button routerLink="/" fragment="actualites" (click)="drawer.close()">Actualités</a>
-
     <a mat-button routerLink="/" fragment="galerie" (click)="drawer.close()">Galerie</a>
-
     <a mat-button routerLink="/" fragment="contact" (click)="drawer.close()">Contact</a>
 
-    <button mat-raised-button color="primary" routerLink="/member">
-      Devenir membre
-    </button>
+    <!-- ❌ PAS CONNECTÉ -->
+    @if (!authService.isLogged()) {
+
+      <a mat-button routerLink="/login" (click)="drawer.close()">Connexion</a>
+      <a mat-button routerLink="/register" (click)="drawer.close()">Créer un compte</a>
+
+    }
+
+    <!-- ✅ CONNECTÉ -->
+    @if (authService.isLogged()) {
+
+      <a mat-button routerLink="/profil" (click)="drawer.close()">Profil</a>
+
+      <!-- devenir membre seulement si pas encore membre -->
+      @if (!authService.isMember()) {
+        <button mat-raised-button color="primary" routerLink="/member" (click)="drawer.close()">
+          Devenir membre
+        </button>
+      }
+
+      <button mat-button (click)="logout(); drawer.close()">
+        Déconnexion
+      </button>
+
+    }
 
   </mat-sidenav>
 

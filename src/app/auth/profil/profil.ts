@@ -2,30 +2,19 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-profil',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule
-  ],
-  templateUrl: './header.html',
-  styleUrls: ['./header.css']
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+  templateUrl: './profil.html',
+  styleUrls: ['./profil.css']
 })
-export class Header {
-
-  opened = false;
+export class ProfilComponent {
 
   constructor(
     public authService: AuthService,
@@ -37,4 +26,8 @@ export class Header {
     this.router.navigate(['/login']);
   }
 
+  unsubscribeMember(): void {
+    this.authService.unsubscribeMember();
+    alert('Vous n’êtes plus membre');
+  }
 }

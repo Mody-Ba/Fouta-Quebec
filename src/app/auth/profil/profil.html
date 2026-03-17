@@ -1,0 +1,30 @@
+<div class="profil-container">
+  <mat-card class="profil-card">
+
+    <h2>Mon profil</h2>
+
+    <p><strong>Nom :</strong> {{ authService.getCurrentUser()?.nom }}</p>
+    <p><strong>Prénom :</strong> {{ authService.getCurrentUser()?.prenom }}</p>
+    <p><strong>Email :</strong> {{ authService.getCurrentUser()?.email }}</p>
+    <p><strong>Rôle :</strong> {{ authService.getCurrentUser()?.role }}</p>
+
+    @if (authService.isMember()) {
+      <p class="member-ok"> Vous êtes membre</p>
+
+      <button mat-raised-button color="warn" (click)="unsubscribeMember()">
+        Se désinscrire du membre
+      </button>
+    } @else {
+      <p class="member-no"> Vous n’êtes pas encore membre</p>
+
+      <button mat-raised-button color="primary" routerLink="/member">
+        Devenir membre
+      </button>
+    }
+
+    <button mat-raised-button color="primary" class="logout-btn" (click)="logout()">
+      Déconnexion
+    </button>
+
+  </mat-card>
+</div>

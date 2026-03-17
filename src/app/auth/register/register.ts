@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {Router, RouterModule} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,11 +14,11 @@ import { AuthService } from '../../core/services/auth.service';
   standalone: true,
   imports: [
     FormsModule,
+    RouterModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    RouterModule
+    MatButtonModule
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
@@ -33,23 +33,27 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private router: Router
-  ){}
+  ) {}
 
-  register(){
-
-    const user = {
-      nom:this.nom,
-      prenom:this.prenom,
-      email:this.email,
-      password:this.password
+  register(): void {
+    if (!this.nom || !this.prenom || !this.email || !this.password) {
+      alert('Veuillez remplir tous les champs');
+      return;
     }
 
-    this.authService.register(user);
+    const success = this.authService.register({
+      nom: this.nom,
+      prenom: this.prenom,
+      email: this.email,
+      password: this.password
+    });
 
-    alert("Compte créé avec succès");
+    if (!success) {
+      alert('Cet email existe déjà');
+      return;
+    }
 
+    alert('Compte créé avec succès');
     this.router.navigate(['/login']);
-
   }
-
 }
